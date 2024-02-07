@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://marketmix.com/git-assets/neutralino-ext-bun/neutralino-bun-header.svg">
+<img src="https://marketmix.com/git-assets/neutralino-ext-rust/neutralino-rust-header.svg">
 </p>
 
 # neutralino-ext-rust
@@ -16,7 +16,7 @@ This extension adds a Rust backend to Neutralino with the following features:
 - Works in Window- and headless Cloud-Mode.
 - Terminates the Rust Runtime when the Neutralino app quits.
 
-![Neutralino Bun / NodeJS Extension](https://marketmix.com/git-assets/neutralino-ext-bun/bun-nodejs-neutralino.gif)
+![Neutralino Rust Extension](https://marketmix.com/git-assets/neutralino-ext-rust/rust-neutralino.gif)
 
 ## Run the demo
 The demo opens a Neutralino app. Clicking on the blue link sends a Ping to Rust, which replies with Pong.
@@ -105,11 +105,11 @@ If the requested function is named **ping**, we send back a message to the Neutr
 - An event name, here "pingResult"
 - The data package to send, which can be a string or stringified JSON.
 
-The **DEBUG_EXT_RUST** constant tells the NeutralinoExtension to report each event to the console. Incoming and outgoing 
-messages are printed in different colors.
+The **DEBUG_EXT_RUST** constant tells the NeutralinoExtension to report each event to the console. Incoming and outgoing messages are printed in different colors.
+
 This makes debugging easier, since you can track the data flow between Neutralino and Rust:
 
-![Debug Bun / NodeJS](https://marketmix.com/git-assets/neutralino-ext-bun/bun-nodejs-console-3.jpg) 
+![Debug Rust](https://marketmix.com/git-assets/neutralino-ext-rust/rust-console.jpg)
 
 ## ./resources/js/main.js explained
 
@@ -133,7 +133,7 @@ The last line initializes the JavaScript part of the Rust-extension. It's import
 
 The **RustExtension class** takes only 1 argument which instructs it to run in debug mode (here true). In this mode, all data coming from the extension is printed to the dev-console:
 
-![Debug Meutralino](https://marketmix.com/git-assets/neutralino-ext-bun/bun-nodejs-neutralino-console.jpg)
+![Debug Meutralino](https://marketmix.com/git-assets/neutralino-ext-rust/rust-console-2.jpg)
 
 The **pingResult event handler** listens to messages with the same name, sent by send_message() on Rust's side. 
 
