@@ -1,1 +1,0 @@
-/Users/hschneider/Work/Software/Playground/neutralino/ext-rust/extensions/rust/target/debug/ext-rust: /Users/hschneider/Work/Software/Playground/neutralino/ext-rust/extensions/rust/src/main.rs /Users/hschneider/Work/Software/Playground/neutralino/ext-rust/extensions/rust/src/neutralino.rs
