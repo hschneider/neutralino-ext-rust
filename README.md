@@ -173,7 +173,6 @@ Below this link, you see
 | async stop()              | Stop and quit the Rust-extension and its parent app. Use this if Neutralino runs in Cloud-Mode. |
 
 ## More about Neutralino
-- 
 - [NeutralinoJS Home](https://neutralino.js.org) 
 
 - [Neutralino Build Automation for macOS, Windows, Linux](https://github.com/hschneider/neutralino-build-scripts)
