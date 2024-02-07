@@ -1,0 +1,6 @@
+{
+  "nlPort":   "8080",
+  "nlToken":  "123",
+  "nlExtensionId":    "ExtRust",
+  "nlConnectToken":   "456"
+}
