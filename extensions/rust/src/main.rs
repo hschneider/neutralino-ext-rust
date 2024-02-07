@@ -6,7 +6,7 @@
 
 mod neutralino;
 
-const DEBUG: bool = true;
+const DEBUG_EXT_RUST: bool = true;
 
 fn process_app_event(ext: &mut neutralino::Extension, d: &mut serde_json::Value) {
     //

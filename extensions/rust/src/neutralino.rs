@@ -8,7 +8,7 @@ use tungstenite::{connect, Message, WebSocket};
 use url::Url;
 use uuid::Uuid;
 
-const VERSION: &str = "1.0.6";
+const VERSION: &str = "1.0.7";
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Data {
@@ -50,7 +50,7 @@ impl Extension {
         //
         // Init and run the WebSocket main loop.
 
-        if crate::DEBUG {
+        if crate::DEBUG_EXT_RUST {
             println!("Running Neutralino Extension {}", VERSION);
         }
 
@@ -88,7 +88,7 @@ impl Extension {
         )
         .to_string();
 
-        if crate::DEBUG {
+        if crate::DEBUG_EXT_RUST {
             println!("WebSocket URL: {}", self.url_ipc);
         }
 
@@ -123,7 +123,7 @@ impl Extension {
             // Capture app-quit events
             //
             if self.is_event(&mut d, "windowClose") || self.is_event(&mut d, "appClose") {
-                if crate::DEBUG {
+                if crate::DEBUG_EXT_RUST {
                     println!("ExtRust is exiting gracefully ...");
                 }
                 process::exit(0);
@@ -156,7 +156,7 @@ impl Extension {
             .expect("Cannot send message.")
             .send(Message::Text(packet.clone()).into());
 
-        if crate::DEBUG {
+        if crate::DEBUG_EXT_RUST {
             println!("\x1b[32mSent: {}\x1b[0m", packet.clone());
         }
     }
