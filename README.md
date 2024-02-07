@@ -3,7 +3,7 @@
 </p>
 
 # neutralino-ext-rust
-**A Rust Extension for Neutralino**
+**A Rust Extension for Neutralino >= 5.0.0**
 
 This extension adds a Rust backend to Neutralino with the following features:
 - Requires only a few lines of code on both ends.
@@ -33,7 +33,7 @@ cargo build --release
 ```
 The demo is configured to launch the Rust-extension binary directly from its build-target's release folder.
 
-After this, run these commands in the ext-rust folder:
+After this, run these commands in the **ext-rust** folder:
 ```commandline
 neu update
 neu run
