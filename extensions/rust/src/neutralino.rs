@@ -7,9 +7,8 @@ use tungstenite::stream::MaybeTlsStream;
 use tungstenite::{connect, Message, WebSocket};
 use url::Url;
 use uuid::Uuid;
-use crate::DEBUG;
 
-const VERSION: &str = "1.0.5";
+const VERSION: &str = "1.0.6";
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Data {
