@@ -23,12 +23,37 @@ The demo opens a Neutralino app. Clicking on the blue link sends a Ping to Rust,
 This illustrates the data-flow in both directions. 
 
 Before running the demo, the Rust extension needs to be compiled with Rust. Make this folder the project root for your 
-Rust-compiler and your are good to go:
+Rust-compiler:
 ```bash
 /extensions/rust
 ```
+Then build with:
+```bash
+cargo build --release
+```
+The demo is configured to launch the Rust-extension binary directly from its build-target's release folder.
 
-When including the extension in your own project, make sure that **neutralino.config.json** contains this whitelist:
+After this, run these commands in the ext-rust folder:
+```commandline
+neu update
+neu run
+```
+
+## Integrate into your own project
+Follow these steps:
+- Adapt the Rust code in **extensions/rust/main.rs** to your needs.
+- Build the Rust-binary.
+- Create an empty **/extensions/rust** folder, used by your installer.
+- Copy the Rust-binary to **/extensions/rust**
+- Copy this **/extensions** folder to your project.
+- Copy **resources/js/rust-extension.js** to **resources/js**.
+- Add `<script src="js/rust-extension.js"></script>` to your **index.html**
+- Add `const RUST = new RustExtension(true)` to your **main.js**
+- Add **RUST.run(function_name, data) to main.js** to run Rust-functions from Neutralino.
+- Add **event listeners to main.js**, to fetch result data from Rust.
+- Modify **neutralino.config.json** (see below).
+
+Make sure that **neutralino.config.json** contains this whitelist:
 ```json
   "nativeAllowList": [
     "app.*",
@@ -39,23 +64,6 @@ When including the extension in your own project, make sure that **neutralino.co
     "debug.log"
   ],
 ```
-
-After this, run these commands in the ext-rust folder:
-```commandline
-neu update
-neu run
-```
-
-## Integrate into your own project
-Just follow these steps:
-- Modify **neutralino.config.json**, like mentioned in **"Run the demo"**.
-- Copy the **extensions** folder to your project.
-- Adapt the JS code in **extensions/rust/main.js** to your needs.
-- Copy **resources/js/rust-extension.js** to **resources/js**.
-- Add `<script src="js/rust-extension.js"></script>` to your **index.html**
-- Add `const RUST = new RustExtension(true)` to your **main.js**
-- Add **RUST.run(function_name, data) to main.js** to run Rust-functions from Neutralino.
-- Add **event listeners to main.js**, to fetch result data from Rust.
 
 ## ./extensions/rust/main.rs explained
 
@@ -146,7 +154,7 @@ Below this link, you see
 
 ## Modules & Classes Overview
 
-### neutralino.rs
+### neutralino.rs (Rust)
 
 | Method                       | Description                                                                                       |
 |------------------------------|---------------------------------------------------------------------------------------------------|
