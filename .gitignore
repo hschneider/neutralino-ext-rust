@@ -1,5 +1,6 @@
 /dist/
 /.tmp/
+/.idea/
 /bin/
 /extensions/rust/.idea/
 /extensions/rust/target/
