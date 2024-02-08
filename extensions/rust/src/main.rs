@@ -36,6 +36,8 @@ fn process_app_event(ext: &mut neutralino::Extension, d: &mut serde_json::Value)
         // Experimental:
         // This starts a long running background task, which reports
         // its progress to stdout.
+        // Using a scoped thread which borrows the ext object will block
+        // until finished. So using ext.send_message() won't work.
         //
         if data["function"].as_str().unwrap() == "longRun" {
             long_run(ext);
