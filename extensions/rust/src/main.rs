@@ -1,8 +1,10 @@
-// main.rs 1.0.0
+// main.rs 1.0.1
 //
 // Neutralino RustExtension.
 //
 // (c)2024 Harald Schneider - marketmix.com
+
+use std::time::Duration;
 
 mod neutralino;
 
@@ -30,7 +32,28 @@ fn process_app_event(ext: &mut neutralino::Extension, d: &mut serde_json::Value)
             let msg = format!("Rust says PONG in reply to '{}'", &p);
             ext.send_message("pingResult", &msg);
         }
+
+        // Experimental:
+        // This starts a long running background task, which reports
+        // its progress to stdout.
+        //
+        if data["function"].as_str().unwrap() == "longRun" {
+            long_run(ext);
+        }
     }
+}
+
+fn long_run(ext: &mut neutralino::Extension) {
+    ext.send_message("pingResult", "Long running task started.");
+
+    std::thread::spawn(|| {
+        let mut p: String;
+        for i in 1..=10 {
+            p = format!("Worker thread: Processing {} / 10", i);
+            std::thread::sleep(Duration::from_secs(2));
+            println!("{}", p);
+        }
+    });
 }
 
 fn main() {
