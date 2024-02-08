@@ -8,7 +8,7 @@ use tungstenite::{connect, Message, WebSocket};
 use url::Url;
 use uuid::Uuid;
 
-const VERSION: &str = "1.0.7";
+const VERSION: &str = "1.0.8";
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Data {
@@ -110,7 +110,9 @@ impl Extension {
                 .read()
                 .expect("Error reading message");
 
-            println!("\x1b[91mReceived: {}\x1b[0m", &msg);
+            if crate::DEBUG_EXT_RUST {
+                println!("\x1b[91mReceived: {}\x1b[0m", &msg);
+            }
 
             let mut d = match serde_json::from_str(&msg.to_string()) {
                 Ok(value) => value,
