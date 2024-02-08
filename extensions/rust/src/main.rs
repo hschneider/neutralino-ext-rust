@@ -39,9 +39,8 @@ fn process_app_event(ext: &mut neutralino::Extension, d: &mut serde_json::Value)
         // Using a scoped thread here instead won't work:
         // In this case the thread borrows the ext object, which will block
         // until finished due to its lifetime. So using ext.send_message()
-        // to report progress won't be possible.
-        // Reporting progress to the frontend will require some other IPC-channel
-        // or a polling solution.
+        // to report progress won't be possible at this point.
+        // This will require some other IPC-channel or a polling solution.
         //
         if data["function"].as_str().unwrap() == "longRun" {
             long_run(ext);
@@ -55,7 +54,7 @@ fn long_run(ext: &mut neutralino::Extension) {
 
     ext.send_message("pingResult", "Long running task started.");
 
-    std::thread::spawn(|| {
+    std::thread::spawn( || {
         let mut p: String;
         for i in 1..=10 {
             p = format!("Worker thread: Processing {} / 10", i);
