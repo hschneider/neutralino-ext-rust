@@ -1,4 +1,4 @@
-// main.rs 1.0.1
+// main.rs 1.0.2
 //
 // Neutralino RustExtension.
 //
