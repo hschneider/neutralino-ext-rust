@@ -163,10 +163,10 @@ in the frontend, the last message triggers **stopPolling**. The progress message
 
 ```mermaid
 graph LR;
-  id[stopPolling]==>id2[Progress 3/3];
-  id2[Progress 3/3]==>id3[Progress 2/3];
-  id3[Progress 2/3]==>id4[Progress 1/3];
-  id4[Progress 1/3]==>id5[startPolling];
+  id[stopPolling]->id2[Progress 3/3];
+  id2[Progress 3/3]->id3[Progress 2/3];
+  id3[Progress 2/3]->id4[Progress 1/3];
+  id4[Progress 1/3]->id5[startPolling];
  
 ```
 
