@@ -1,3 +1,14 @@
+<style>
+/* Hide Mermaid controls on GitHub */
+.mermaid svg {
+    overflow: visible !important;
+}
+
+.mermaid .label {
+    display: none !important;
+}
+</style>
+
 <p align="center">
 <img src="https://marketmix.com/git-assets/neutralino-ext-rust/neutralino-rust-header.svg">
 </p>
