@@ -158,15 +158,15 @@ Below this link, you see
 For details how to start a long-running background task in Rust and how to poll its progress,
 see the comments in `extensions/rust/main.rs`and `resources/js/main.js`.
 
-Event messages of these tasks are stored in a separate queue. The first message triggers **startPolling**
-in the frontend, the last message triggers **stopPolling**. The progress messages are in between:
+At first, Rust sends a **startPolling-event** to the frontend.
+All progress-messages are stored in a queue.
+Finally last queued message sends the **stopPolling-event**:
 
 ```mermaid
 graph LR;
   id[stopPolling]-->id2[Progress 3/3];
-  id2[3/3]-->id3[Progress 2/3];
-  id3[2/3]-->id4[Progress 1/3];
-  id4[1/3]-->id5[startPolling];
+  id2[Progress 3/3]-->id3[Progress 2/3];
+  id3[Progress 2/3]-->id4[Progress 1/3];
  
 ```
 
