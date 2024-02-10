@@ -113,7 +113,7 @@ impl Extension {
                 .as_mut()
                 .expect("Error reading socket.")
                 .read()
-                .expect("Error reading message");
+                .expect("Error reading message.");
 
             if crate::DEBUG_EXT_RUST {
                 println!("\x1b[91mReceived: {}\x1b[0m", &msg);
