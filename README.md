@@ -160,7 +160,7 @@ see the comments in `extensions/rust/main.rs`and `resources/js/main.js`.
 Event messages of these tasks are stored in a separate queue. The first message triggers **startPolling**
 in the frontend, the last message triggers **stopPolling**. The progress messages are in between:
 
-StopPolling | Progress 3/3 | Progress 2/3  | Progress 1/3  | StartPolling -->
+--> StopPolling | Progress 3/3 | Progress 2/3  | Progress 1/3  | StartPolling -->
 
 The **poll-event** from the front end forces Rust to stop listening on the WebSocket and processing 
 the queue instead.
