@@ -177,10 +177,12 @@ the queue instead.
 
 ### neutralino.rs (Rust)
 
-| Variable/Struct | Description                                                             |
-|-----------------|-------------------------------------------------------------------------|
-| DEBUG_EXT_RUST  | Log debug messages to stdout, if true.                                  |
-| EventMessage    | **event**: Event-name, **data**: Payload as string or stringified JSON. |
+| Variable / Struct                        | Description                                                             |
+|------------------------------------------|-------------------------------------------------------------------------|
+| const DEBUG_EXT_RUST                     | Log debug messages to stdout, if true.                                  |
+| struct EventMessage                      | **event**: Event-name, **data**: Payload as string or stringified JSON. |
+| Arc<MessageQueue<EventMessage>> messages | Threadsave message queue for progress event-messages.                   |
+| messages.push(EventMessage)              | Pushes an EventMessage to the queue.                                    |
 
 | Method | Description                                                                                       |
 |-------|---------------------------------------------------------------------------------------------------|
