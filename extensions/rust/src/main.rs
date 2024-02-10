@@ -32,15 +32,22 @@ fn process_app_event(ext: &mut neutralino::Extension, d: &mut serde_json::Value)
             let msg = format!("Rust says PONG in reply to '{}'", &p);
             ext.send_message("pingResult", &msg);
         }
-
-        // Experimental:
+        
         // This starts a long-running background-task, which reports
         // its progress to stdout.
+        //
+        // Problem:
         // Using a scoped thread here instead won't work:
         // In this case the thread borrows the ext object, which will block
         // until finished due to its lifetime. So using ext.send_message()
         // to report progress won't be possible at this point.
-        // This will require some other IPC-channel or a polling solution.
+        //
+        // Solution:
+        // Progress messages are pushed into a queue and a startPolling event
+        // is sent to the frontend. At the end the spawned task pushes a
+        // stopPolling event into the queue.
+        // The frontend sends a poll event, which triggers pulling messages from
+        // the queue.
         //
         if data["function"].as_str().unwrap() == "longRun" {
             long_run(ext);
@@ -52,15 +59,42 @@ fn long_run(ext: &mut neutralino::Extension) {
     //
     // Spawn a background-task
 
-    ext.send_message("pingResult", "Long running task started.");
+    // Clone thread-save queue
+    let q = ext.messages.clone();
 
-    std::thread::spawn( || {
+    // Signal frontend to start polling
+    ext.send_message("startPolling", "_");
+
+    // Spawn background-task
+    //
+    std::thread::spawn(move || {
         let mut p: String;
         for i in 1..=10 {
-            p = format!("Worker thread: Processing {} / 10", i);
-            std::thread::sleep(Duration::from_secs(2));
+            p = format!("Long-running task progress: {} / 10", i);
             println!("{}", p);
+
+            // Push progress message to the queue
+            //
+            let mut msg: neutralino::Data = neutralino::Data {
+                event: "".to_string(),
+                data: "".to_string(),
+            };
+            msg.event = "pingResult".to_string();
+            msg.data = p;
+            q.push(msg);
+
+            std::thread::sleep(Duration::from_secs(1));
         }
+
+        // Signal frontend to stop polling
+        //
+        let mut msg: neutralino::Data = neutralino::Data {
+            event: "".to_string(),
+            data: "".to_string(),
+        };
+        msg.event = "stopPolling".to_string();
+        msg.data = "".to_string();
+        q.push(msg);
     });
 }
 

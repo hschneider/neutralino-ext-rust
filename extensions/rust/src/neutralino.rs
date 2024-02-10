@@ -7,13 +7,15 @@ use tungstenite::stream::MaybeTlsStream;
 use tungstenite::{connect, Message, WebSocket};
 use url::Url;
 use uuid::Uuid;
+use std::sync::{Arc, Mutex};
+use std::collections::VecDeque;
 
-const VERSION: &str = "1.0.8";
+const VERSION: &str = "1.0.9";
 
 #[derive(Serialize, Deserialize, Debug)]
-struct Data {
-    event: String,
-    data: String,
+pub struct Data {
+    pub event: String,
+    pub data: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -30,6 +32,7 @@ pub struct Extension {
     url_ipc: String,
     token: String,
     socket: Option<WebSocket<MaybeTlsStream<TcpStream>>>,
+    pub messages: Arc<MessageQueue<Data>>
 }
 
 impl Extension {
@@ -43,6 +46,7 @@ impl Extension {
             url_ipc: String::new(),
             token: String::new(),
             socket: None,
+            messages: Arc::new(MessageQueue::new()),
         };
     }
 
@@ -131,6 +135,10 @@ impl Extension {
                 process::exit(0);
             }
 
+            if let Some(item) = self.messages.pop() {
+                self.send_message(item.event.as_str(), item.data.as_str());
+            }
+
             // Process IPC-packages:
             callback(self, &mut d);
         }
@@ -192,5 +200,31 @@ impl Extension {
         let mut buffer = String::new();
         io::stdin().read_to_string(&mut buffer)?;
         Ok(buffer)
+    }
+}
+
+// Define a thread-safe queue
+#[derive(Debug)]
+pub struct MessageQueue<T> {
+    inner: Arc<Mutex<VecDeque<T>>>,
+}
+
+impl<T> MessageQueue<T> {
+    pub fn new() -> Self {
+        MessageQueue {
+            inner: Arc::new(Mutex::new(VecDeque::new())),
+        }
+    }
+    pub fn push(&self, item: T) {
+        let mut inner = self.inner.lock().unwrap();
+        inner.push_back(item);
+    }
+    pub fn pop(&self) -> Option<T> {
+        let mut inner = self.inner.lock().unwrap();
+        inner.pop_front()
+    }
+    pub fn size(&self) -> usize {
+        let inner = self.inner.lock().unwrap();
+        return inner.len();
     }
 }
