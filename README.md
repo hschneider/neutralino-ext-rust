@@ -178,11 +178,11 @@ the queue instead. When the **stopPolling-message** is sent back, the frontend s
 
 ### neutralino.rs (Rust)
 
-| Variable / Struct                        | Description                                                                                                                  |
-|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
-| const DEBUG_EXT_RUST                     | This logs debug messages to stdout, if true. This is a global const.                                                         |
-| struct EventMessage                      | The event message with the following fields:<br>`event`: Event-name<br>`data`: Payload as string or stringified JSON.        |
-| Arc<MessageQueue<EventMessage>> messages | Thread-save message queue, holding the progress event-messages. Queue a new event-message with` messages.push(EventMessage)` |
+| Variable / Struct                        | Description                                                                                                                                                                          |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| const DEBUG_EXT_RUST                     | This logs debug messages to stdout, if true. This is a global const.                                                                                                                 |
+| struct EventMessage                      | An event-message with the following fields:<br>`event`: Event-name<br>`data`: Payload as string or stringified JSON.                                                                 |
+| Arc<MessageQueue<EventMessage>> messages | Thread-save message queue, holding the progress event-messages. This is referenced with e.g.  `let q = ext.messages.clone()`. Queue a new event-message with `q.push(EventMessage)`. |
 
 | Method | Description                                                                                             |
 |-------|---------------------------------------------------------------------------------------------------------|
