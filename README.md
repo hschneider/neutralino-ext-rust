@@ -54,16 +54,15 @@ Follow these steps:
 - Add **event listeners to main.js**, to fetch result data from Rust.
 - Modify **neutralino.config.json** (see below).
 
-Make sure that **neutralino.config.json** contains this whitelist:
+Make sure that **neutralino.config.json** contains this, adapted to your environment:
 ```json
-  "nativeAllowList": [
-    "app.*",
-    "os.*",
-    "window.*",
-    "events.*",
-    "extensions.*",
-    "debug.log"
-  ],
+"extensions": [
+  {
+    "id": "extRust",
+    "commandDarwin": "${NL_PATH}/extensions/rust/target/release/ext-rust ${NL_PATH}",
+    "commandWindows": "${NL_PATH}/extensions/rust/target/release/ext-rust.exe ${NL_PATH}"
+  }
+],
 ```
 
 ## ./extensions/rust/main.rs explained
