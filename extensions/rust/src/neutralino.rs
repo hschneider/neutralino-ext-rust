@@ -10,7 +10,7 @@ use uuid::Uuid;
 use std::sync::{Arc, Mutex};
 use std::collections::VecDeque;
 
-const VERSION: &str = "1.0.9";
+const VERSION: &str = "1.1.1";
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct EventMessage {
@@ -27,6 +27,7 @@ struct DataPacket {
     data: EventMessage,
 }
 
+#[derive(Debug)]
 pub struct Extension {
     config: Value,
     url_ipc: String,
