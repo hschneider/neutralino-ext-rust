@@ -179,27 +179,28 @@ the queue instead. When the **stopPolling-message** is sent back, the frontend s
 
 ### neutralino.rs (Rust)
 
-| Variable / Struct                        | Description                                                             |
-|------------------------------------------|-------------------------------------------------------------------------|
-| const DEBUG_EXT_RUST                     | Log debug messages to stdout, if true.                                  |
-| struct EventMessage                      | **event**: Event-name, **data**: Payload as string or stringified JSON. |
-| Arc<MessageQueue<EventMessage>> messages | Threadsave message queue for progress event-messages.                   |
-| messages.push(EventMessage)              | Pushes an EventMessage to the queue.                                    |
+| Variable / Struct                        | Description                                                                                                               |
+|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| const DEBUG_EXT_RUST                     | Logs debug messages to stdout, if true. This is a global const.                                                           |
+| struct EventMessage                      | The event message with the following fields:<br>**event**: Event-name<br>**data**: Payload as string or stringified JSON. |
+|                                          |                                                                                                                           |
+| Arc<MessageQueue<EventMessage>> messages | Thread-save message queue holding the progress event-messages.                                                            |
+| messages.push(EventMessage)              | Pushes an EventMessage to the queue.                                                                                      |
 
-| Method | Description                                                                                       |
-|-------|---------------------------------------------------------------------------------------------------|
-| new() | Create a new Extension struct instance.                                                           |
-| run(callback) | Starts the extensions main processing loop. Each incoming message triggers the callback function. |
-| is_event(d, e) | Checks the incoming event data package (d) for a particular event-name (e).                       |
-| get_data(d) | Extracts a JSON data payload from the data packet's (d) `data` field.                             |
-| send_message(e, d) | Send a message to Neutralino. e: Event-name, d: Data package as string or stringified JSON.       |
+| Method | Description                                                                                             |
+|-------|---------------------------------------------------------------------------------------------------------|
+| new() | Create a new Extension struct instance.                                                                 |
+| run(callback) | Starts the extensions main processing loop. Each incoming message triggers the callback function.       |
+| is_event(d, e) | Checks the incoming event data-package for a particular event-name.<br>d: Data-package<br>e: Event-name |
+| get_data(d) | Extracts a JSON data payload from the data-package's `data` field. <br>d: The data-package.             |
+| send_message(e, d) | Send a message to Neutralino. <br>e: Event-name<br> d: Data package as string or stringified JSON.      |
 
 ### rust-extension.js
 
 | Method                    | Description                                                                                     |
 |---------------------------|-------------------------------------------------------------------------------------------------|
 | RustExtension(debug=false) | Extension class. debug: Print data flow to the dev-console.                                     |
-| async run(f, p=null)      | Call a Rust-function. f: Function-name, p: Parameter data package as string or JSON.            |
+| async run(f, p=null)      | Call a Rust-function.<br>f: Function-name.<br>p: Parameter data package as string or JSON.      |
 | async stop()              | Stop and quit the Rust-extension and its parent app. Use this if Neutralino runs in Cloud-Mode. |
 
 ## More about Neutralino
