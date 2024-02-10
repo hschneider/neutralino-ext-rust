@@ -162,7 +162,7 @@ in the frontend, the last message triggers **stopPolling**. The progress message
 
 --> StopPolling | Progress 3/3 | Progress 2/3  | Progress 1/3  | StartPolling -->
 
-The **poll-event** from the front end forces Rust to stop listening on the WebSocket and processing 
+The incoming **poll-event** from the frontend forces Rust to stop listening on the WebSocket and processing 
 the queue instead.
 
 ## Modules & Classes Overview
