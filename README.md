@@ -161,7 +161,7 @@ see the comments in `extensions/rust/main.rs`and `resources/js/main.js`.
 At first, Rust sends a **startPolling-message** to the frontend. As a result, the frontend sends a **poll-message** every 500ms.
 
 All progress-messages of the long-running task are stored in a queue.
-Before the task eneds, it pushes a **stopPolling-message** to the queue:
+Before the task ends, it pushes a **stopPolling-message** to the queue:
 
 ```mermaid
 graph LR;
@@ -172,7 +172,7 @@ graph LR;
 ```
 
 Each incoming **poll-message** forces Rust to stop listening on the WebSocket and processing 
-the queue instead. 
+the queue instead. When the **stopPolling-message** is sent, the frontend stops polling.
 
 ## Modules & Classes Overview
 
