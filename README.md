@@ -177,13 +177,18 @@ the queue instead.
 
 ### neutralino.rs (Rust)
 
-| Method                       | Description                                                                                       |
-|------------------------------|---------------------------------------------------------------------------------------------------|
-| neutralino::Extension::new() | Create a new Extension struct instance.                                                           |
-| run(callback)                | Starts the extensions main processing loop. Each incoming message triggers the callback function. |
-| is_event(d, e)               | Checks the incoming event data package (d) for a particular event-name (e).                       |
-| get_data(d)                  | Extracts a JSON data payload from the data packet's (d) `data` field.                             |
-| send_message(e, d)           | Send a message to Neutralino. e: Event-name, d: Data package as string or stringified JSON.       |
+| Variable/Struct | Description                                                             |
+|-----------------|-------------------------------------------------------------------------|
+| DEBUG_EXT_RUST  | Log debug messages to stdout, if true.                                  |
+| EventMessage    | **event**: Event-name, **data**: Payload as string or stringified JSON. |
+
+| Method | Description                                                                                       |
+|-------|---------------------------------------------------------------------------------------------------|
+| new() | Create a new Extension struct instance.                                                           |
+| run(callback) | Starts the extensions main processing loop. Each incoming message triggers the callback function. |
+| is_event(d, e) | Checks the incoming event data package (d) for a particular event-name (e).                       |
+| get_data(d) | Extracts a JSON data payload from the data packet's (d) `data` field.                             |
+| send_message(e, d) | Send a message to Neutralino. e: Event-name, d: Data package as string or stringified JSON.       |
 
 ### rust-extension.js
 
