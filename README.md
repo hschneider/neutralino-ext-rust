@@ -158,7 +158,8 @@ Below this link, you see
 For details how to start a long-running background task in Rust and how to poll its progress,
 see the comments in `extensions/rust/main.rs`and `resources/js/main.js`.
 
-At first, Rust sends a **startPolling-message** to the frontend. As a result, the frontend sends a **poll-message** every 500ms.
+Before a new task is spawned, Rust sends a **startPolling-message** to the frontend. 
+As a result, the frontend sends a **poll-message** every 500ms.
 
 All progress-messages of the long-running task are stored in a queue.
 Before the task ends, it pushes a **stopPolling-message** to the queue:
@@ -172,7 +173,7 @@ graph LR;
 ```
 
 Each incoming **poll-message** forces Rust to stop listening on the WebSocket and processing 
-the queue instead. When the **stopPolling-message** is sent, the frontend stops polling.
+the queue instead. When the **stopPolling-message** is sent back, the frontend stops polling.
 
 ## Modules & Classes Overview
 
