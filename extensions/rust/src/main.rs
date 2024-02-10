@@ -75,7 +75,7 @@ fn long_run(ext: &mut neutralino::Extension) {
 
             // Push progress message to the queue
             //
-            let mut msg: neutralino::Data = neutralino::Data {
+            let mut msg: neutralino::EventMessage = neutralino::EventMessage {
                 event: "".to_string(),
                 data: "".to_string(),
             };
@@ -88,7 +88,7 @@ fn long_run(ext: &mut neutralino::Extension) {
 
         // Signal frontend to stop polling
         //
-        let mut msg: neutralino::Data = neutralino::Data {
+        let mut msg: neutralino::EventMessage = neutralino::EventMessage {
             event: "".to_string(),
             data: "".to_string(),
         };

@@ -13,7 +13,7 @@ use std::collections::VecDeque;
 const VERSION: &str = "1.0.9";
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct Data {
+pub struct EventMessage {
     pub event: String,
     pub data: String,
 }
@@ -24,7 +24,7 @@ struct DataPacket {
     id: String,
     method: String,
     accessToken: String,
-    data: Data,
+    data: EventMessage,
 }
 
 pub struct Extension {
@@ -32,7 +32,7 @@ pub struct Extension {
     url_ipc: String,
     token: String,
     socket: Option<WebSocket<MaybeTlsStream<TcpStream>>>,
-    pub messages: Arc<MessageQueue<Data>>
+    pub messages: Arc<MessageQueue<EventMessage>>
 }
 
 impl Extension {
@@ -153,7 +153,7 @@ impl Extension {
             id: Uuid::new_v4().into(),
             method: "app.broadcast".into(),
             accessToken: self.token.clone().into(),
-            data: Data {
+            data: EventMessage {
                 event: event.into(),
                 data: data.into(),
             },
@@ -222,9 +222,5 @@ impl<T> MessageQueue<T> {
     pub fn pop(&self) -> Option<T> {
         let mut inner = self.inner.lock().unwrap();
         inner.pop_front()
-    }
-    pub fn size(&self) -> usize {
-        let inner = self.inner.lock().unwrap();
-        return inner.len();
     }
 }
