@@ -162,13 +162,12 @@ Event messages of these tasks are stored in a separate queue. The first message 
 in the frontend, the last message triggers **stopPolling**. The progress messages are in between:
 
 ```mermaid
-
 graph LR;
-  id[stopPolling]-->id2[Progress 3/3];
-  id2[Progress 3/3]-->id3[Progress 2/3];
-  id3[Progress 2/3]-->id4[Progress 1/3];
-  id4[Progress 1/3]-->id5[startPolling];
-  
+  id[stopPolling]==>id2[Progress 3/3];
+  id2[Progress 3/3]==>id3[Progress 2/3];
+  id3[Progress 2/3]==>id4[Progress 1/3];
+  id4[Progress 1/3]==>id5[startPolling];
+ 
 ```
 
 The incoming **poll-event** from the frontend forces Rust to stop listening on the WebSocket and processing 
