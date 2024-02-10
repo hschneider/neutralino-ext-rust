@@ -32,7 +32,7 @@ fn process_app_event(ext: &mut neutralino::Extension, d: &mut serde_json::Value)
             let msg = format!("Rust says PONG in reply to '{}'", &p);
             ext.send_message("pingResult", &msg);
         }
-        
+
         // This starts a long-running background-task, which reports
         // its progress to stdout.
         //
