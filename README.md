@@ -193,7 +193,7 @@ Extension Module:
 | callback(ext, d)   | The callback function referenced by `ext.run(callback)`.<br>ext: The extension instance as `&mut neutralino::Extension`.<br>d: The incoming data-package as `&mut serde_json`. |
 | is_event(d, e)     | Checks the incoming event data-package for a particular event-name.<br>d: Data-package as `&serde_json`.<br>e: Event-name as `&str`. |
 | get_data(d)        | Extracts a JSON data payload from the data-package's `data` field.<br>d: The data-package as `&serde_json`. |
-| send_message(e, d) | Send a message to Neutralino. <br>e: Event-name as `&str`.<br>d: Data package as `&str` or stringified JSON.<br>Predefined messages:<br>`startPolling`: Starts polling lon-running tasks on the frontend.<br />`stopPolling`: Stops polling. |
+| send_message(e, d) | Send a message to Neutralino. <br>e: Event-name as `&str`.<br>d: Data package as `&str` or stringified JSON.<br>Predefined events:<br>`startPolling`: Starts polling lon-running tasks on the frontend.<br />`stopPolling`: Stops polling. |
 
 ### rust-extension.js
 
