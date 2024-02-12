@@ -193,7 +193,14 @@ Extension Module:
 | callback(ext, d)   | The callback function referenced by `ext.run(callback)`.<br>ext: The extension instance as `&mut neutralino::Extension`.<br>d: The incoming data-package as `&mut serde_json`. |
 | is_event(d, e)     | Checks the incoming event data-package for a particular event-name.<br>d: Data-package as `&serde_json`.<br>e: Event-name as `&str`. |
 | get_data(d)        | Extracts a JSON data payload from the data-package's `data` field.<br>d: The data-package as `&serde_json`. |
-| send_message(e, d) | Send an event-message to Neutralino. <br>e: Event-name as `&str`.<br>d: Data package as `&str` or stringified JSON.<br>Predefined events:<br>`startPolling`: Starts polling lon-running tasks on the frontend.<br />`stopPolling`: Stops polling. |
+| send_message(e, d) | Send an event-message to Neutralino. <br>e: Event-name as `&str`.<br>d: Data package as `&str` or stringified JSON. |
+
+Events sent from the extension to the frontend:
+
+| Event        | Description                                       |
+| ------------ | ------------------------------------------------- |
+| startPolling | Starts polling lon-running tasks on the frontend. |
+| stopPolling  | Stops polling.                                    |
 
 ### rust-extension.js
 
@@ -208,6 +215,13 @@ RustExtension Class:
 | ----------- | --------------------------------------------------------- |
 | debug       | If true,  data flow is printed to the dev-console.        |
 | pollSigStop | If true, then polling for long running tasks is inactive. |
+
+Events, sent from the frontend to the extension:
+
+| Event    | Description                                                  |
+| -------- | ------------------------------------------------------------ |
+| appClose | Notifies the extension, that the app will close. This quits the extension. |
+| poll     | Forces the extsension to process the long-running task's message queue. |
 
 ## More about Neutralino
 
