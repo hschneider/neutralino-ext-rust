@@ -178,6 +178,8 @@ the queue instead. When the **stopPolling-message** is sent back, the frontend s
 
 ### neutralino.rs (Rust)
 
+Extension Module:
+
 | Variable / Struct                        | Description                                                                                                                                                                          |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | const DEBUG_EXT_RUST                     | This logs debug messages to stdout, if true. This is a global const.                                                                                                                 |
@@ -195,14 +197,16 @@ the queue instead. When the **stopPolling-message** is sent back, the frontend s
 
 ### rust-extension.js
 
+RustExtension Class:
+
 | Method                    | Description                                                                                     |
 |---------------------------|-------------------------------------------------------------------------------------------------|
-| RustExtension(debug=false) | Extension class. debug: Print data flow to the dev-console.                                     |
 | async run(f, p=null)      | Call a Rust-function.<br>f: Function-name.<br>p: Parameter data package as string or JSON.      |
 | async stop()              | Stop and quit the Rust-extension and its parent app. Use this if Neutralino runs in Cloud-Mode. |
 
 | Property    | Description                                               |
 | ----------- | --------------------------------------------------------- |
+| debug       | If true,  data flow is printed to the dev-console.        |
 | pollSigStop | If true, then polling for long running tasks is inactive. |
 
 ## More about Neutralino
