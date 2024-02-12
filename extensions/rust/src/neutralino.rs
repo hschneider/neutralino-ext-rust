@@ -10,7 +10,7 @@ use uuid::Uuid;
 use std::sync::{Arc, Mutex};
 use std::collections::VecDeque;
 
-const VERSION: &str = "1.1.1";
+const VERSION: &str = "1.1.2";
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct EventMessage {
