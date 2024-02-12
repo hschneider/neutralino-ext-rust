@@ -129,7 +129,7 @@ Neutralino.events.on("pingResult", onPingResult);
 const RUST = new RustExtension(true)
 ```
 
-The last line initializes the JavaScript part of the Rust-extension. It's important to place this after Neutralino.init() and after all event handlers have been installed. Put it in the last line of your code and you are good to go. The const **RUST** is accessible globally.
+The last line initializes the JavaScript part of the Rust-extension. It's important to place this after Neutralino.init() and after all event handlers have been installed. Put it in the last line of your code and you are good to go. The const **RUST** is accessible globally and **must not be renamed** to something else.
 
 The **RustExtension class** takes only 1 argument which instructs it to run in debug mode (here true). In this mode, all data coming from the extension is printed to the dev-console:
 
@@ -158,7 +158,7 @@ For details how to start a long-running background task in Rust and how to poll 
 see the comments in `extensions/rust/main.rs`and `resources/js/main.js`.
 
 Before a new task is spawned, Rust sends a **startPolling-message** to the frontend. 
-As a result, the frontend sends a **poll-message** every 500ms.
+As a result, the frontend sends a **poll-message** every 500 ms.
 
 All progress-messages of the long-running task are stored in a queue.
 Before the task ends, it pushes a **stopPolling-message** to the queue:
@@ -201,7 +201,12 @@ the queue instead. When the **stopPolling-message** is sent back, the frontend s
 | async run(f, p=null)      | Call a Rust-function.<br>f: Function-name.<br>p: Parameter data package as string or JSON.      |
 | async stop()              | Stop and quit the Rust-extension and its parent app. Use this if Neutralino runs in Cloud-Mode. |
 
+| Property    | Description                                               |
+| ----------- | --------------------------------------------------------- |
+| pollSigStop | If true, then polling for long running tasks is inactive. |
+
 ## More about Neutralino
+
 - [NeutralinoJS Home](https://neutralino.js.org) 
 
 - [Neutralino Build Automation for macOS, Windows, Linux](https://github.com/hschneider/neutralino-build-scripts)
