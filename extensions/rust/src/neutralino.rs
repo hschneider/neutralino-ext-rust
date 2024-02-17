@@ -108,8 +108,7 @@ impl Extension {
         // Listen for incoming data and trigger callback.
         //
         loop {
-            let msg = self
-                .socket
+            let msg = self.socket
                 .as_mut()
                 .expect("Error reading socket.")
                 .read()
@@ -174,7 +173,7 @@ impl Extension {
 
     pub fn is_event(&mut self, d: &serde_json::Value, event_name: &str) -> bool {
         //
-        // Check if ipc package contains a particluar eventName
+        // Check if ipc package contains a particular eventName
 
         if d.get("event").is_some() {
             if d["event"].as_str().unwrap().to_string() == event_name.to_string() {
