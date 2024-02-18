@@ -206,6 +206,7 @@ impl Extension {
 }
 
 // Define a thread-safe queue
+//
 #[derive(Debug)]
 pub struct MessageQueue<T> {
     inner: Arc<Mutex<VecDeque<T>>>,
