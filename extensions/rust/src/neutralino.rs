@@ -135,6 +135,8 @@ impl Extension {
                 process::exit(0);
             }
 
+            // Process sending message queue
+            //
             if let Some(item) = self.messages.pop() {
                 self.send_message(item.event.as_str(), item.data.as_str());
             }
