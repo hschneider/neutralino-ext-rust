@@ -197,7 +197,7 @@ Extension Module:
 
 | Function                         | Description                                                  |
 | -------------------------------- | ------------------------------------------------------------ |
-| neutralino::send_queued(q, e, d) | Send queued messages from spawned long-running tasks<br>q: Thread-save message queue = ext.messages.clone();<br />e: Event-name as &str<br />d: Data package as `&str` or stringified JSON. |
+| neutralino::send_queued(q, e, d) | Send queued messages from long-running tasks. Always use this to send messages from within a spawned thread. Outside a thread use the **ext.send_message()** method.<br>q: Thread-save message queue = ext.messages.clone();<br />e: Event-name as &str<br />d: Data package as `&str` or stringified JSON. |
 
 Events sent from the extension to the frontend:
 
