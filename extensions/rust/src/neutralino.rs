@@ -1,3 +1,9 @@
+// neutralino.rs
+//
+// Neutralino RustExtension.
+//
+// (c)2024 Harald Schneider - marketmix.com
+
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::{io, process};
@@ -203,6 +209,21 @@ impl Extension {
         io::stdin().read_to_string(&mut buffer)?;
         Ok(buffer)
     }
+}
+
+// Helper functions
+//
+pub fn send_queued(q: Arc<MessageQueue<EventMessage>>, event: &str, data: &str) {
+    //
+    // Send queued messages from spawned long-running tasks
+
+    let mut msg:EventMessage = EventMessage {
+        event: "".to_string(),
+        data: "".to_string(),
+    };
+    msg.event = event.to_string();
+    msg.data = data.to_string();
+    q.push(msg);
 }
 
 // Define a thread-safe queue

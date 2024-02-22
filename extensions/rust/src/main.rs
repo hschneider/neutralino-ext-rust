@@ -74,27 +74,13 @@ fn long_run(ext: &mut neutralino::Extension) {
             println!("{}", p);
 
             // Push progress message to the queue
-            //
-            let mut msg: neutralino::EventMessage = neutralino::EventMessage {
-                event: "".to_string(),
-                data: "".to_string(),
-            };
-            msg.event = "pingResult".to_string();
-            msg.data = p;
-            q.push(msg);
+            neutralino::send_queued(q.clone(), "pingResult", &*p);
 
             std::thread::sleep(Duration::from_secs(1));
         }
 
         // Signal frontend to stop polling
-        //
-        let mut msg: neutralino::EventMessage = neutralino::EventMessage {
-            event: "".to_string(),
-            data: "".to_string(),
-        };
-        msg.event = "stopPolling".to_string();
-        msg.data = "".to_string();
-        q.push(msg);
+        neutralino::send_queued(q.clone(), "stopPolling", "");
     });
 }
 

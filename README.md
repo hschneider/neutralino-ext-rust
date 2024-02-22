@@ -195,6 +195,10 @@ Extension Module:
 | get_data(d)        | Extracts a JSON data payload from the data-package's `data` field.<br>d: The data-package as `&serde_json`. |
 | send_message(e, d) | Send an event-message to Neutralino. <br>e: Event-name as `&str`.<br>d: Data package as `&str` or stringified JSON. |
 
+| Function                         | Description                                                  |
+| -------------------------------- | ------------------------------------------------------------ |
+| neutralino::send_queued(q, e, d) | Send queued messages from spawned long-running tasks<br>q: Thread-save message queue = ext.messages.clone();<br />e: Event-name as &str<br />d: Data package as `&str` or stringified JSON. |
+
 Events sent from the extension to the frontend:
 
 | Event        | Description                                       |
