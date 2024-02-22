@@ -226,7 +226,7 @@ pub fn send_queued(q: Arc<MessageQueue<EventMessage>>, event: &str, data: &str) 
     q.push(msg);
 }
 
-// Define a thread-safe queue
+// Thread-safe queue
 //
 #[derive(Debug)]
 pub struct MessageQueue<T> {
