@@ -10,7 +10,7 @@ use uuid::Uuid;
 use std::sync::{Arc, Mutex};
 use std::collections::VecDeque;
 
-const VERSION: &str = "1.1.2";
+const VERSION: &str = "1.1.3";
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct EventMessage {
@@ -94,7 +94,7 @@ impl Extension {
         .to_string();
 
         if crate::DEBUG_EXT_RUST {
-            println!("WebSocket URL: {}", self.url_ipc);
+            println!("WebSocket URL: {}", &self.url_ipc);
         }
 
         // Connect to server
