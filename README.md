@@ -210,10 +210,10 @@ Events sent from the extension to the frontend:
 
 RustExtension Class:
 
-| Method                    | Description                                                                                     |
-|---------------------------|-------------------------------------------------------------------------------------------------|
-| async run(f, p=null)      | Call a Rust-function.<br>f: Function-name.<br>p: Parameter data package as string or JSON.      |
-| async stop()              | Stop and quit the Rust-extension and its parent app. Use this if Neutralino runs in Cloud-Mode. |
+| Method               | Description                                                  |
+| -------------------- | ------------------------------------------------------------ |
+| async run(f, p=null) | Call a Rust-function.<br>f: Function-name.<br>p: Parameter data package as string or JSON. |
+| async stop()         | Stop and quit the Rust-extension and its parent app. Use this if Neutralino runs in Cloud-Mode. This is called automatically, when the browser tab is closed. |
 
 | Property    | Description                                               |
 | ----------- | --------------------------------------------------------- |

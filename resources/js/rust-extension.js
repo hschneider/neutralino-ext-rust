@@ -6,7 +6,7 @@
 
 class RustExtension {
     constructor(debug=false) {
-        this.version = '1.0.1';
+        this.version = '1.0.2';
         this.debug = debug;
 
         this.pollSigStop = true;
@@ -16,6 +16,15 @@ class RustExtension {
         //
         Neutralino.events.on("startPolling", this.onStartPolling);
         Neutralino.events.on("stopPolling", this.onStopPolling);
+
+        if(NL_MODE !== 'window') {
+            window.addEventListener('beforeunload', function (e) {
+                e.preventDefault();
+                e.returnValue = '';
+                RUST.stop();
+                return '';
+            });
+        }
     }
     async run(f, p=null) {
         //
