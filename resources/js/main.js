@@ -32,6 +32,7 @@ Neutralino.events.on("pingResult", onPingResult);
 //
 (async () => {
     await Neutralino.window.setTitle(`Neutralino RustExtension ${NL_APPVERSION}`);
+    await Neutralino.window.show();
 })();
 
 // Init Rust Extension
