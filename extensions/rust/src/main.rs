@@ -34,7 +34,7 @@ fn process_app_event(ext: &mut neutralino::Extension, d: &mut serde_json::Value)
         }
 
         // This starts a long-running background-task, which reports
-        // its progress to stdout.
+        // its progress to the frontend.
         //
         // Problem:
         // Using a scoped thread here instead won't work:
