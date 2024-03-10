@@ -23,8 +23,7 @@ This extension adds a Rust backend to Neutralino with the following features:
 The demo opens a Neutralino app. Clicking on the blue link sends a Ping to Rust, which replies with Pong.
 This illustrates the data-flow in both directions. 
 
-Before running the demo, the Rust extension needs to be compiled with Rust. Make this folder the project root for your 
-Rust-compiler:
+Before running the demo, the Rust extension needs to be compiled with Rust. Make this folder the project root for your Rust-compiler:
 ```bash
 /extensions/rust
 ```
@@ -145,12 +144,6 @@ In **index.html**, you can see how to send data from Neutralino to Rust, which i
 **RUST.run()** takes 2 arguments:
 - The Bun function to call, here "ping"
 - The data package to submit, either as string or JSON.
-
-Below this link, you see
-```html
-<a id="link-quit" href="#" onclick="RUST.stop();" style="display:none">Quit</a>
-```
-**RUST.stop()** is only required, when running Neutralino in cloud-mode. This will unload the RUST-extsension gracefully.
 
 ### Long-running tasks and their progress
 
