@@ -48,6 +48,7 @@
     {
       "id": "extRust",
       "commandDarwin": "${NL_PATH}/extensions/rust/target/release/ext-rust ${NL_PATH}",
+      "commandLinux": "${NL_PATH}/extensions/rust/target/release/ext-rust ${NL_PATH}",
       "commandWindows": "${NL_PATH}/extensions/rust/target/release/ext-rust.exe ${NL_PATH}"
     }
   ],
