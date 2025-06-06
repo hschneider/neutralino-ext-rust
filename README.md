@@ -55,6 +55,14 @@ Follow these steps:
 
 Make sure that **neutralino.config.json** contains this, adapted to your environment:
 ```json
+"nativeAllowList": [
+  "app.*",
+  "os.*",
+  "window.*",
+  "events.*",
+  "extensions.*",
+  "debug.log"
+],
 "extensions": [
   {
     "id": "extRust",
