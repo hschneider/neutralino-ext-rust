@@ -47,7 +47,7 @@ class RustExtension {
 
     async stop() {
         //
-        // Stop and quit the Bun-extension and its parent app.
+        // Stop and quit the extension and its parent app.
         // Use this if Neutralino runs in Cloud-Mode.
 
         let ext = 'extRust';
